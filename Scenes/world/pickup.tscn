@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjeqmu5hb53et"]
+
+[ext_resource type="Script" path="res://Scripts/pickup.gd" id="1_fvlss"]
+[ext_resource type="Texture2D" uid="uid://bm7g0to1muw4q" path="res://Scenes/world/gem2-color5.png" id="1_in5jh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6pdv3"]
+radius = 18.4391
+
+[node name="Pickup" type="Area2D"]
+script = ExtResource("1_fvlss")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6pdv3")
+
+[node name="Gem2-color5" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+texture = ExtResource("1_in5jh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

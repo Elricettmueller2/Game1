@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://crx1bieacquwc"]
+
+[ext_resource type="PackedScene" uid="uid://cc4n6so6shwu3" path="res://Scenes/world/world.tscn" id="1_y6m6q"]
+[ext_resource type="PackedScene" uid="uid://b21imiwk4hil0" path="res://Scenes/Entities/Player/player.tscn" id="2_blj32"]
+[ext_resource type="PackedScene" uid="uid://cjeqmu5hb53et" path="res://Scenes/world/pickup.tscn" id="3_5umlm"]
+
+[sub_resource type="Curve2D" id="Curve2D_skgyi"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -717, -459, 0, 0, 0, 0, 682, -456, 0, 0, 0, 0, 677, 483, 0, 0, 0, 0, -42.3677, 495.049, 0, 0, 0, 0, -705, 486, 0, 0, 0, 0, -716, -457)
+}
+point_count = 6
+
+[node name="Game" type="Node2D"]
+
+[node name="World" parent="." instance=ExtResource("1_y6m6q")]
+unique_name_in_owner = true
+position = Vector2(241, 186)
+
+[node name="Player2" parent="World" instance=ExtResource("2_blj32")]
+position = Vector2(-28, -11)
+
+[node name="Camera2D" type="Camera2D" parent="World/Player2"]
+
+[node name="Path2D" type="Path2D" parent="World/Player2"]
+curve = SubResource("Curve2D_skgyi")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="World/Player2/Path2D"]
+unique_name_in_owner = true
+position = Vector2(-717, -459)
+rotation = 0.00214439
+
+[node name="Timer" type="Timer" parent="World/Player2"]
+wait_time = 10.642
+autostart = true
+
+[node name="Pickups" type="Node" parent="World"]
+
+[node name="Pickup" parent="World/Pickups" instance=ExtResource("3_5umlm")]
+position = Vector2(350, 167)
+
+[connection signal="timeout" from="World/Player2/Timer" to="World" method="_on_timer_timeout"]

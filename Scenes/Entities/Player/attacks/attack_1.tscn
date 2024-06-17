@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://dg2iecl3hhjjx"]
+
+[ext_resource type="Script" path="res://Scripts/attack_1.gd" id="1_k2g8s"]
+[ext_resource type="Texture2D" uid="uid://h11bn2t2io4a" path="res://Textures/Proxy weapon.png" id="2_2gtxb"]
+[ext_resource type="PackedScene" uid="uid://e56q3yp1be0t" path="res://Scenes/Entities/Player/attacks/projectile_1.tscn" id="3_ct5x1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b04uv"]
+radius = 438.657
+
+[node name="Attack1" type="Area2D"]
+position = Vector2(0, 1)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_k2g8s")
+
+[node name="Attackrange" type="CollisionShape2D" parent="."]
+rotation = -2.49286
+shape = SubResource("CircleShape2D_b04uv")
+
+[node name="SwordPivot" type="Marker2D" parent="."]
+position = Vector2(6, 0)
+rotation = -0.00360459
+scale = Vector2(-15.12, 0.151386)
+
+[node name="ProxyWeapon" type="Sprite2D" parent="SwordPivot"]
+position = Vector2(-3.64018, -71.3518)
+rotation = 2.79602
+scale = Vector2(0.506044, -0.18351)
+skew = 0.345533
+texture = ExtResource("2_2gtxb")
+
+[node name="shoot" type="Marker2D" parent="SwordPivot/ProxyWeapon"]
+unique_name_in_owner = true
+
+[node name="Projectile1" parent="SwordPivot/ProxyWeapon/shoot" instance=ExtResource("3_ct5x1")]
+position = Vector2(1.52588e-05, -9.53674e-07)
+rotation = 3.13799
+scale = Vector2(0.308891, -0.157632)
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.3
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

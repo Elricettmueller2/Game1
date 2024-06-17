@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://vl0htiiacvie"]
+
+[ext_resource type="Script" path="res://bat_enemy.gd" id="1_lnwds"]
+[ext_resource type="PackedScene" uid="uid://c2ciki7bbcpqb" path="res://Scenes/Entities/Enemies/bat/bat.tscn" id="2_o7y26"]
+[ext_resource type="Script" path="res://Scripts/bat.gd" id="3_dq3ay"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2iaoj"]
+radius = 18.0
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_lnwds")
+
+[node name="Bat" parent="." instance=ExtResource("2_o7y26")]
+unique_name_in_owner = true
+position = Vector2(0, -30)
+script = ExtResource("3_dq3ay")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -34)
+shape = SubResource("CircleShape2D_2iaoj")

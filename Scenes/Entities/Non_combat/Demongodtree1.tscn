@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://nelac0bv7e0m"]
+
+[ext_resource type="Texture2D" uid="uid://dho82477xgs4n" path="res://Textures/Shadows/Shadow scaled 0.png" id="1_01c72"]
+[ext_resource type="Texture2D" uid="uid://bexoollgr1ipx" path="res://Textures/DemonGodTree/demon_tree0.png" id="1_6rs8v"]
+[ext_resource type="Texture2D" uid="uid://cff22o4dhvxlo" path="res://Textures/Shadows/Shadow min opacity.png" id="3_pacyq"]
+[ext_resource type="Texture2D" uid="uid://doeft22piupnc" path="res://Textures/Shadows/Shadow 3 op.png" id="4_07lwt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_upkp6"]
+custom_solver_bias = 0.187
+radius = 247.883
+
+[node name="StaticBody2D" type="StaticBody2D"]
+
+[node name="ShadowScaled0" type="Sprite2D" parent="."]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(-1, 20)
+scale = Vector2(5.36753, 3.18518)
+texture = ExtResource("1_01c72")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+position = Vector2(1, -20)
+rotation = -6.28319
+scale = Vector2(0.432029, -0.290932)
+shape = SubResource("CircleShape2D_upkp6")
+
+[node name="DemonTree0" type="Sprite2D" parent="."]
+position = Vector2(-1, -73)
+texture = ExtResource("1_6rs8v")
+
+[node name="ShadowMinOpacity" type="Sprite2D" parent="."]
+position = Vector2(3, 4.00002)
+scale = Vector2(106.265, 27.4602)
+texture = ExtResource("3_pacyq")
+
+[node name="Shadow3Op" type="Sprite2D" parent="."]
+position = Vector2(6, 34)
+scale = Vector2(24.8264, 9.52645)
+texture = ExtResource("4_07lwt")

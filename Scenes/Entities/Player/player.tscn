@@ -1,0 +1,85 @@
+[gd_scene load_steps=10 format=3 uid="uid://b21imiwk4hil0"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_e2lb4"]
+[ext_resource type="PackedScene" uid="uid://ddl3f5p7lajos" path="res://Scenes/Entities/Player/Characters/warrior.tscn" id="2_uovoh"]
+[ext_resource type="PackedScene" uid="uid://dg2iecl3hhjjx" path="res://Scenes/Entities/Player/attacks/attack_1.tscn" id="11_m18l5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ijux"]
+radius = 5.51469
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vygjh"]
+radius = 10.0499
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_isi0a"]
+bg_color = Color(0.996612, 0, 0.041541, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqe8m"]
+bg_color = Color(2.79158e-06, 0.710856, 0.468727, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8jbjv"]
+bg_color = Color(2.88785e-07, 0.323858, 0.422694, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_daauk"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_e2lb4")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -10)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-1.90735e-06, -9.53674e-07)
+scale = Vector2(2.00108, 2.26771)
+shape = SubResource("CircleShape2D_1ijux")
+
+[node name="Warrior" parent="." instance=ExtResource("2_uovoh")]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_vygjh")
+
+[node name="Attack1" parent="." instance=ExtResource("11_m18l5")]
+position = Vector2(10, -8)
+rotation = -0.00216681
+scale = Vector2(0.79179, 0.837697)
+
+[node name="Healthbar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -13.0
+offset_top = 8.0
+offset_right = 14.0
+offset_bottom = 12.0
+theme_override_styles/background = SubResource("StyleBoxFlat_isi0a")
+theme_override_styles/fill = SubResource("StyleBoxFlat_uqe8m")
+value = 100.0
+show_percentage = false
+
+[node name="Expiriencebar" type="ProgressBar" parent="."]
+clip_contents = true
+offset_left = -582.0
+offset_top = 320.0
+offset_right = 1940.0
+offset_bottom = 324.0
+scale = Vector2(0.524733, 1.69092)
+theme_override_styles/background = SubResource("StyleBoxFlat_8jbjv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_daauk")
+min_value = 1.0
+value = 1.0
+show_percentage = false
+
+[connection signal="turn_sprite" from="." to="Warrior" method="_on_player_turn_sprite"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
